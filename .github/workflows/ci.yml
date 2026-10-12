@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install checkers
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq shellcheck tcl
+
+      - name: Python compiles
+        run: python3 -m py_compile iris.py
+
+      - name: Installer syntax + shellcheck
+        run: |
+          bash -n install_iris.sh
+          shellcheck -S error install_iris.sh
+
+      - name: Generate example scripts (headless)
+        run: |
+          python3 iris.py examples/picorv32/picorv32_sky130.json --generate-only --out /tmp/gen
+          bash -n /tmp/gen/run_flow.sh
+          python3 -m py_compile /tmp/gen/09_gds_merge.py
+
+      - name: Tcl syntax of generated OpenROAD scripts
+        run: |
+          cd /tmp/gen
+          for f in 02_design.sdc 03_floorplan.tcl 05_place.tcl 06_cts.tcl 07_route.tcl 08_reports.tcl 10_view.tcl; do
+            echo "proc unknown {args} {return {}}; proc exit {args} {}; namespace eval ord {proc get_db_block {} {return b}}; source $f; puts ok-$f" | tclsh
+          done
+
+      - name: No NDA PDK data committed
+        run: |
+          ! git ls-files | grep -E '\.local\.json$|\.(lib|lef|tlef|gds|oas)$'

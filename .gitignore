@@ -1,0 +1,32 @@
+# --- never commit NDA / private PDK data ---
+*.local.json
+pdk_profiles.local.json
+*.lib
+*.lib.gz
+*.lef
+*.tlef
+*.gds
+*.gds2
+*.oas
+*.odb
+*.def
+*.spef
+
+# --- run outputs ---
+work/
+scripts/
+iris_runs/
+*.log
+*.vcd
+*.fst
+*.vvp
+*.lyrdb
+
+# --- python / editors ---
+__pycache__/
+*.pyc
+.venv/
+.vscode/
+.idea/
+*.swp
+.DS_Store

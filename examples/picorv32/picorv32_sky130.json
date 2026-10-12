@@ -1,0 +1,250 @@
+{
+  "project": {
+    "top_module": "picorv32",
+    "rtl_dir": "$HOME/designs/picorv32",
+    "rtl_files": [
+      "$HOME/designs/picorv32/picorv32.v"
+    ],
+    "work_dir": "$HOME/iris_runs/picorv32/work",
+    "output_dir": "$HOME/iris_runs/picorv32/scripts"
+  },
+  "pdk": {
+    "active_profile": "SkyWater 130nm (5 metal)",
+    "cell_pins": {
+      "clk": "CLK",
+      "d": "D",
+      "q": "Q",
+      "reset_n": "RESET_B",
+      "set_n": "SET_B",
+      "latch_en": "GATE",
+      "latch_reset_n": "RESET_B"
+    },
+    "pdk_root": "$HOME/.ciel/sky130A",
+    "lef_files": [
+      "libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef",
+      "libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef"
+    ],
+    "lib_file": "libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib",
+    "gds_files": [
+      "libs.ref/sky130_fd_sc_hd/gds/sky130_fd_sc_hd.gds"
+    ],
+    "site_name": "unithd",
+    "clock_buffer": "sky130_fd_sc_hd__clkbuf_4",
+    "buffer_cell": "sky130_fd_sc_hd__buf_1",
+    "dont_use_cells": [
+      "*lpflow*",
+      "*probe*"
+    ],
+    "filler_cells": [
+      "sky130_fd_sc_hd__fill_1",
+      "sky130_fd_sc_hd__fill_2",
+      "sky130_fd_sc_hd__fill_4",
+      "sky130_fd_sc_hd__fill_8"
+    ],
+    "tie_hi_cell": "sky130_fd_sc_hd__conb_1",
+    "tie_lo_cell": "sky130_fd_sc_hd__conb_1",
+    "cells": {
+      "dff_reset_low": "sky130_fd_sc_hd__dfrtp_1",
+      "dff_reset_high": "sky130_fd_sc_hd__dfstp_1",
+      "latch": "sky130_fd_sc_hd__dlrtp_1"
+    },
+    "pads": {
+      "input": "",
+      "output": "",
+      "vdd": "",
+      "vss": "",
+      "corner": "",
+      "corner_size_um": 0.0
+    },
+    "metal_layers": [
+      {
+        "name": "li1",
+        "x_pitch": 0.46,
+        "y_pitch": 0.34,
+        "x_offset": 0.23,
+        "y_offset": 0.17
+      },
+      {
+        "name": "met1",
+        "x_pitch": 0.34,
+        "y_pitch": 0.34,
+        "x_offset": 0.17,
+        "y_offset": 0.17
+      },
+      {
+        "name": "met2",
+        "x_pitch": 0.46,
+        "y_pitch": 0.46,
+        "x_offset": 0.23,
+        "y_offset": 0.23
+      },
+      {
+        "name": "met3",
+        "x_pitch": 0.68,
+        "y_pitch": 0.68,
+        "x_offset": 0.34,
+        "y_offset": 0.34
+      },
+      {
+        "name": "met4",
+        "x_pitch": 0.92,
+        "y_pitch": 0.92,
+        "x_offset": 0.46,
+        "y_offset": 0.46
+      },
+      {
+        "name": "met5",
+        "x_pitch": 3.4,
+        "y_pitch": 3.4,
+        "x_offset": 1.7,
+        "y_offset": 1.7
+      }
+    ],
+    "ff_mapping": "dfflibmap",
+    "tie_hi_pin": "HI",
+    "tie_lo_pin": "LO",
+    "io_hor_layer": "met3",
+    "io_ver_layer": "met2",
+    "tapcell": "sky130_fd_sc_hd__tapvpwrvgnd_1",
+    "tap_distance": 14,
+    "layer_map_file": "libs.tech/klayout/tech/sky130A.map",
+    "pdn": {
+      "enable": true,
+      "power_pins": "^(VDD|VPWR|VPB)$",
+      "ground_pins": "^(VSS|VGND|VNB)$",
+      "rail_layer": "met1",
+      "rail_width": 0.48,
+      "straps": [
+        {
+          "layer": "met4",
+          "width": 1.6,
+          "pitch": 27.14,
+          "offset": 13.57
+        },
+        {
+          "layer": "met5",
+          "width": 1.6,
+          "pitch": 27.2,
+          "offset": 13.6
+        }
+      ],
+      "connect": [
+        [
+          "met1",
+          "met4"
+        ],
+        [
+          "met4",
+          "met5"
+        ]
+      ]
+    }
+  },
+  "verify": {
+    "lint_enable": true,
+    "verilator_flags": "-Wall -Wno-fatal -Wno-DECLFILENAME -Wno-UNUSEDSIGNAL -Wno-UNUSEDPARAM -Wno-PINCONNECTEMPTY",
+    "sim_enable": true,
+    "testbench_files": [
+      "$HOME/iris_runs/picorv32/tb_picorv32.v"
+    ],
+    "tb_top": "tb",
+    "iverilog_flags": "-g2012",
+    "sim_fail_regex": "FAIL|ERROR|MISMATCH"
+  },
+  "synthesis": {
+    "abc_D": 20000,
+    "target_delay_ps": 20000,
+    "flatten": true,
+    "share_wreduce": true
+  },
+  "sdc": {
+    "clock_port": "clk",
+    "clock_period_ns": 20.0,
+    "clock_uncertainty_ns": 0.25,
+    "hold_uncertainty_ns": 0.1,
+    "io_delay_ns": 4.0,
+    "reset_port": "resetn",
+    "reset_is_async": false,
+    "sync_input_ports": [
+      "ALL"
+    ],
+    "output_ports": [
+      "ALL"
+    ],
+    "output_load_pf": 0.0334,
+    "max_fanout": 16,
+    "max_transition_ns": 1.5
+  },
+  "floorplan": {
+    "die_size_um": 600.0,
+    "core_margin_um": 20.0,
+    "aspect_ratio": 1.0
+  },
+  "padframe": {
+    "enable": false,
+    "corner_cell": "",
+    "corner_size_um": 0.0,
+    "pads_south": 4,
+    "pads_east": 4,
+    "pads_north": 4,
+    "pads_west": 4,
+    "default_pad_width_um": 80.0,
+    "default_signal_pad": "",
+    "default_output_pad": "",
+    "default_vdd_pad": "",
+    "default_vss_pad": "",
+    "auto_power_pairs": true,
+    "pad_list": []
+  },
+  "placement": {
+    "density": 0.55,
+    "init_density_penalty": 0.2,
+    "init_wirelength_coef": 0.02,
+    "min_phi_coef": 0.95,
+    "max_phi_coef": 1.05,
+    "overflow": 0.05,
+    "pad_left": 2,
+    "pad_right": 2,
+    "routability_driven": true,
+    "detailed_max_displacement": 500
+  },
+  "cts": {
+    "wire_unit": 20,
+    "distance_between_buffers": 100,
+    "sink_clustering_size": 25,
+    "sink_clustering_max_diameter": 50,
+    "num_static_layers": 0
+  },
+  "routing": {
+    "bottom_layer": "met1",
+    "top_layer": "met5",
+    "iterations": 64,
+    "verbose": 1,
+    "clean_patches": true,
+    "save_guide_updates": true
+  },
+  "reports": {
+    "activity": 0.1,
+    "duty": 0.5
+  },
+  "signoff": {
+    "drc_deck": "",
+    "drc_extra_args": ""
+  },
+  "script_overrides": {},
+  "runtime": {
+    "toolchain_mode": "bcdc",
+    "bcdc_env": "$HOME/.bcdc/env.sh",
+    "openroad_bin": "openroad",
+    "yosys_bin": "yosys",
+    "klayout_bin": "klayout",
+    "verilator_bin": "verilator",
+    "iverilog_bin": "iverilog",
+    "threads": 8,
+    "yosys_env_activate": "source $HOME/oss-cad-suite/environment",
+    "openroad_use_nix": true,
+    "openlane_nix_dir": "$HOME/openlane2",
+    "klayout_env_activate": ""
+  },
+  "_comment": "IRIS example: YosysHQ picorv32 (default params) on sky130A hd, no padframe. Set pdk.pdk_root to your sky130A (ciel/volare). 50 MHz, ~25% util."
+}

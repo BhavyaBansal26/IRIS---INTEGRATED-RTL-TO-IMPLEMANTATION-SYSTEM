@@ -1,0 +1,37 @@
+{
+  "_comment": "Copy to ~/.bcdc/pdk_profiles.local.json (never commit it). Each entry appears in the PDK tab's Profile list. All names below are placeholders.",
+  "profiles": {
+    "My Foundry 180nm (4 metal)": {
+      "pdk_root": "$HOME/pdks/my_foundry_180",
+      "lef_files": ["lef/tech.lef", "lef/stdcells.lef"],
+      "lib_file": "lib/stdcells_tt_1p8v_25c.lib",
+      "gds_files": ["gds/stdcells.gds"],
+      "site_name": "core",
+      "clock_buffer": "CLKBUF_X4",
+      "buffer_cell": "BUF_X1",
+      "dont_use_cells": [],
+      "filler_cells": ["FILL1", "FILL2", "FILL4", "FILL8"],
+      "tie_hi_cell": "TIEHI", "tie_hi_pin": "Z",
+      "tie_lo_cell": "TIELO", "tie_lo_pin": "ZN",
+
+      "ff_mapping": "dfflibmap",
+      "_ff_mapping_note": "Use 'techmap' only if dfflibmap can't map your flops; then fill cells + cell_pins.",
+      "cells": {"dff_reset_low": "DFFR_X1", "dff_reset_high": "DFFS_X1", "latch": "LATCH_X1"},
+      "cell_pins": {"clk": "CK", "d": "D", "q": "Q", "reset_n": "RN", "set_n": "SN",
+                    "latch_en": "G", "latch_reset_n": "RN"},
+
+      "pads": {"input": "", "output": "", "vdd": "", "vss": "", "corner": "", "corner_size_um": 0.0},
+      "metal_layers": [
+        {"name": "metal1", "x_pitch": 0.56, "y_pitch": 0.56, "x_offset": 0.28, "y_offset": 0.28},
+        {"name": "metal2", "x_pitch": 0.56, "y_pitch": 0.56, "x_offset": 0.28, "y_offset": 0.28},
+        {"name": "metal3", "x_pitch": 0.56, "y_pitch": 0.56, "x_offset": 0.28, "y_offset": 0.28},
+        {"name": "metal4", "x_pitch": 0.72, "y_pitch": 0.72, "x_offset": 0.36, "y_offset": 0.36}
+      ],
+      "routing_bottom": "metal1", "routing_top": "metal4",
+      "io_hor_layer": "metal3", "io_ver_layer": "metal2",
+      "tapcell": "", "tap_distance": 0,
+      "layer_map_file": "",
+      "pdn": {"enable": false}
+    }
+  }
+}
