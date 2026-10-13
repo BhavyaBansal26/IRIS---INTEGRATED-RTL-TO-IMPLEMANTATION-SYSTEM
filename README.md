@@ -109,14 +109,7 @@ See [`docs/pdk_profiles.local.example.json`](docs/pdk_profiles.local.example.jso
 
 Every stage re-reads the timing library, because `.odb` files don't store it. A stage that crashes after writing its output (for example a CTS segfault) is allowed to continue only if that file was written during the current run.
 
-## Roadmap
 
-- [ ] LVS (Magic extraction + Netgen) and antenna checks as stages
-- [ ] OpenRCX extraction + multi-corner STA
-- [ ] SRAM / hard-macro placement, chip-top + padframe assembly
-- [ ] HTML run dashboard (timing, area, power, DRC per run, compare runs)
-- [ ] Regression suite (picorv32, ibex, aes, …) × (sky130, gf180, ihp-sg13g2) in CI
-- [ ] Docker image for macOS / Windows without WSL
 
 ## License
 
